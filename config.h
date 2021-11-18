@@ -17,7 +17,7 @@ static const int smartgaps          = 1;        /* 1 means no outer gap when the
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const Bool viewontag         = True;     /* Switch view on tag switch */
-static const char *fonts[]          = { "Source Code Pro Nerd Font Mono:size=14" };
+static const char *fonts[]          = { "Source Code Pro Nerd Font Mono:size=14" }; //source-code-pro
 static const char dmenufont[]       = "Source Code Pro Nerd Font Mono:size=14";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
@@ -98,7 +98,7 @@ static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "80x24", NULL };
 
 static const char *suspendcmd[]  = { "/home/july/scripts/suspend.sh", NULL };
-
+static const char *lockcmd[]  = { "/home/july/scripts/i3lock.sh", NULL };
 
 static Key keys[] = {
 	/* modifier            key                      function        argument */
@@ -169,9 +169,12 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,    XK_0,                    tag,            {.ui = ~0 } },
 	//向 左||右 浏览 workspace,一一浏览，包括未使用的workspace
 	{ MODKEY,              XK_i,                    viewtoleft,     {0} },
+
 	{ MODKEY,              XK_o,                    viewtoright,    {0} },
 	//在最近 2 个workspace 切换 
 	{ MODKEY,              XK_Tab,                  view,           {0} },
+	//lock 不知道为什么没用
+	{ MODKEY,    	       XK_s,                    spawn,          {.v = lockcmd } },
 	//system sleep
 	{ MODKEY|ShiftMask,    XK_p,                    spawn,          {.v = suspendcmd } },
 	//system exit
