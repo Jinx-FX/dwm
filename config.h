@@ -174,7 +174,7 @@ static Key keys[] = {
 	//在最近 2 个workspace 切换 
 	{ MODKEY,              XK_Tab,                  view,           {0} },
 	//lock 不知道为什么没用
-	{ MODKEY,    	       XK_s,                    spawn,          {.v = lockcmd } },
+	{ MODKEY|ShiftMask,    XK_s,                    spawn,          {.v = lockcmd } },
 	//system sleep
 	{ MODKEY|ShiftMask,    XK_p,                    spawn,          {.v = suspendcmd } },
 	//system exit
