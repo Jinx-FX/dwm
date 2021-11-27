@@ -54,7 +54,7 @@ static const Rule rules[] = {
 	{ "Android Emulator",   NULL,       NULL,       0,            1,           -1 },
 	{ "Emulator", 			NULL,       NULL,       0,            1,           -1 },
 	{ "quemu-system-i386",  NULL,       NULL,       0,            1,           -1 },
-	{ "chromium",            NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "chromium",           NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
 /* layout(s) */
@@ -65,7 +65,7 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "Tile",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
+	{ " ◰ ",       NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle }, //windows nums?
 };
 
@@ -86,19 +86,23 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 static const char *browsercmd[]  = { "chromium", NULL };
 static const char *thunarcmd[]  = { "thunar", NULL };
-static const char *xfce4appfindercmd[]  = { "xfce4-appfinder", NULL };
+static const char *rofidrun[]  = { "rofi", "-show", "drun", NULL };
 static const char *thunderbirdcmd[]  = { "thunderbird", NULL };
 static const char *steamcmd[]  = { "steam", NULL };
+static const char *music[] = {"netease-cloud-music", NULL};
 
 static const char *upvol[]   = { "/home/july/scripts/vol-up.sh",  NULL };
 static const char *downvol[] = { "/home/july/scripts/vol-down.sh",  NULL };
+static const char *togglevol[] = { "/home/july/scripts/vol-toggle.sh", NULL};
 
 static const char *wpcmd[]  = { "/home/july/scripts/wp-change.sh", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "80x24", NULL };
 
 static const char *suspendcmd[]  = { "/home/july/scripts/suspend.sh", NULL };
-static const char *lockcmd[]  = { "/home/july/scripts/i3lock.sh", NULL };
+// 不能用sh执行i3lock， 我不知道为什么？
+//static const char *screenLock[]  = { "/home/july/scripts/screen-lock.sh", NULL };
+static const char *screenLock[]  = { "i3lock", "-i", "/home/july/lock.png", NULL };
 
 static Key keys[] = {
 	/* modifier            key                      function        argument */
@@ -111,10 +115,12 @@ static Key keys[] = {
 	{ Mod1Mask,            XK_b,                    spawn,          {.v = thunderbirdcmd } },
 	{ Mod1Mask,            XK_s,                    spawn,          {.v = steamcmd } },
 	{ Mod1Mask,            XK_t,                    spawn,          {.v = thunarcmd } },
-	{ Mod1Mask,            XK_f,                    spawn,          {.v = xfce4appfindercmd } },
+	{ Mod1Mask,            XK_f,                    spawn,          {.v = rofidrun } },
+    { Mod1Mask,            XK_m,                    spawn,          {.v = music } },
 	//volume
 	{ MODKEY,              XK_Down,          		spawn,          {.v = downvol } },
 	{ MODKEY,              XK_Up,         			spawn,          {.v = upvol   } },
+    { MODKEY,              XK_F9,                   spawn,          {.v = togglevol} },
 	//wallpaper
 	{ MODKEY,              XK_a,                    spawn,          {.v = wpcmd } },
 	//window switch
@@ -164,17 +170,19 @@ static Key keys[] = {
 	TAGKEYS(               XK_7,                      6)
 	TAGKEYS(               XK_8,                      7)
 	TAGKEYS(               XK_9,                      8)
+
 	//合并在一起观看
+	//向 左||右 浏览 workspace,一一浏览，包括未使用的workspace
 	{ MODKEY,              XK_0,                    view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,    XK_0,                    tag,            {.ui = ~0 } },
-	//向 左||右 浏览 workspace,一一浏览，包括未使用的workspace
-	{ MODKEY,              XK_i,                    viewtoleft,     {0} },
 
-	{ MODKEY,              XK_o,                    viewtoright,    {0} },
 	//在最近 2 个workspace 切换 
+	{ MODKEY,              XK_i,                    viewtoleft,     {0} },
+	{ MODKEY,              XK_o,                    viewtoright,    {0} },
 	{ MODKEY,              XK_Tab,                  view,           {0} },
-	//lock 不知道为什么没用
-	{ MODKEY|ShiftMask,    XK_s,                    spawn,          {.v = lockcmd } },
+
+	//解决了，但没完全解决
+	{ Mod1Mask|ShiftMask,  XK_l,                    spawn,          {.v = screenLock } },
 	//system sleep
 	{ MODKEY|ShiftMask,    XK_p,                    spawn,          {.v = suspendcmd } },
 	//system exit
