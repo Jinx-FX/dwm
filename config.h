@@ -24,7 +24,7 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#ffffff";
 static const char col_cyan[]        = "#37474F";
-static const char col_border[]        = "#42A5F5";
+static const char col_border[]      = "#42A5F5";
 static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
@@ -90,7 +90,7 @@ static const char *rofidrun[]  = { "rofi", "-show", "drun", NULL };
 static const char *thunderbirdcmd[]  = { "thunderbird", NULL };
 static const char *steamcmd[]  = { "steam", NULL };
 static const char *music[] = {"netease-cloud-music", NULL};
-static const char *screenshoot[] = {"falmeshot", "gui", NULL};
+static const char *screenshoot[] = {"flameshot", "gui", NULL};
 
 static const char *upvol[]   = { "/home/july/scripts/vol-up.sh",  NULL };
 static const char *downvol[] = { "/home/july/scripts/vol-down.sh",  NULL };
@@ -118,7 +118,7 @@ static Key keys[] = {
 	{ Mod1Mask,            XK_t,                    spawn,          {.v = thunarcmd } },
 	{ Mod1Mask,            XK_f,                    spawn,          {.v = rofidrun } },
     { Mod1Mask,            XK_m,                    spawn,          {.v = music } },
-    { Mod1Mask,            XK_c,                    spawn,          {.v = screenshoot } },
+    { Mod1Mask|ShiftMask,  XK_c,                    spawn,          {.v = screenshoot } },
 	//volume
 	{ MODKEY,              XK_Down,          		spawn,          {.v = downvol } },
 	{ MODKEY,              XK_Up,         			spawn,          {.v = upvol   } },
