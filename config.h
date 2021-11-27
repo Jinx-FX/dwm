@@ -90,6 +90,7 @@ static const char *rofidrun[]  = { "rofi", "-show", "drun", NULL };
 static const char *thunderbirdcmd[]  = { "thunderbird", NULL };
 static const char *steamcmd[]  = { "steam", NULL };
 static const char *music[] = {"netease-cloud-music", NULL};
+static const char *screenshoot[] = {"falmeshot", "gui", NULL};
 
 static const char *upvol[]   = { "/home/july/scripts/vol-up.sh",  NULL };
 static const char *downvol[] = { "/home/july/scripts/vol-down.sh",  NULL };
@@ -117,6 +118,7 @@ static Key keys[] = {
 	{ Mod1Mask,            XK_t,                    spawn,          {.v = thunarcmd } },
 	{ Mod1Mask,            XK_f,                    spawn,          {.v = rofidrun } },
     { Mod1Mask,            XK_m,                    spawn,          {.v = music } },
+    { Mod1Mask,            XK_c,                    spawn,          {.v = screenshoot } },
 	//volume
 	{ MODKEY,              XK_Down,          		spawn,          {.v = downvol } },
 	{ MODKEY,              XK_Up,         			spawn,          {.v = upvol   } },
