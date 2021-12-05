@@ -188,7 +188,7 @@ static Key keys[] = {
 	//system sleep
 	{ MODKEY|ShiftMask,    XK_p,                    spawn,          {.v = suspendcmd } },
 	//system exit
-    //MODKEY + TAB + j : 也能退出系统，不知道为什么...
+    //MODKEY + jj : 也能退出系统，不知道为什么...
 	{ MODKEY|ControlMask,  XK_e,                    quit,           {0} },
 
 };
